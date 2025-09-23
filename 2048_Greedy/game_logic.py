@@ -42,6 +42,7 @@ def move_down(board):
 def count_tiles(board):
     return np.count_nonzero(board)
 
+
 def evaluate_board(board, original_max):
     """Score a board based on greedy heuristics"""
     score = 0
@@ -57,12 +58,12 @@ def evaluate_board(board, original_max):
     # row monotonicity
     for row in board:
         for i in range(3):
-            if row[i] >= row[i+1]:
+            if row[i] >= row[i + 1]:
                 score += 1
     # col monotonicity
     for col in board.T:
         for i in range(3):
-            if col[i] >= col[i+1]:
+            if col[i] >= col[i + 1]:
                 score += 1
 
     return score

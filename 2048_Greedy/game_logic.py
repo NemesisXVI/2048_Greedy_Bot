@@ -68,6 +68,22 @@ def evaluate_board(board, original_max):
 
     return score
 
+def check_state(board):
+    moves = {
+        "up": move_up(board),
+        "left": move_left(board),
+        "right": move_right(board),
+        "down": move_down(board)
+    }
+
+    priority = ["up", "left", "right", "down"]
+
+    for direction in priority:
+        new_board = moves[direction]
+        if not np.array_equal(new_board, board):
+            return True
+
+    return False
 
 def choose_best_move(board):
     """Greedy: keep highest number top-left, minimize tiles"""

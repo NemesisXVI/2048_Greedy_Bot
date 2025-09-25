@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import time
 
@@ -23,9 +25,15 @@ def detect_game_state(image_path):
         return "", check
 
     # best_move = choose_best_move(board)
-    best_move = choose_best_move_deepseek(board)
+    try:
+        best_move = choose_best_move_deepseek(board)
 
-    if best_move == "":
+        # If DeepSeek returns empty string, fallback to greedy
+        if best_move == "":
+            raise ValueError("DeepSeek returned empty move")
+
+    except Exception as e:
+        # print(f"DeepSeek failed: {e}")
         best_move = choose_best_move(board)
         print(f"Greedy suggests move: {best_move}")
 
@@ -36,6 +44,7 @@ def main():
     print("2048 Bot starting...")
     adb_screenshot()
     check = True
+
     while check:
         adb_screenshot()
         move, check = detect_game_state(SCREENSHOT_PATH)
@@ -48,7 +57,7 @@ def main():
         time.sleep(2)  # wait for move animation
 
     print("Game over or max moves reached.")
-    # print(detect_game_state(SCREENSHOT_PATH))
+    # # print(detect_game_state(SCREENSHOT_PATH))
 
 
 if __name__ == "__main__":

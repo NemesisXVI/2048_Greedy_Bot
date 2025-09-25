@@ -1,12 +1,13 @@
 import numpy as np
 from openai import OpenAI
 from openai.types.chat import ChatCompletionUserMessageParam, ChatCompletionSystemMessageParam
+import os
 
 
-
+api_key = os.getenv("MY_API_KEY")
 # Initialize DeepSeek client
 client = OpenAI(
-    api_key="eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTE3NTM2MDEyNDk0MjYxNzAyMSIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkxNjQyMTI1MywidXVpZCI6IjAxOTk3ZDI1LWQ0NmQtNzM5MC04ZWM0LTEzNjFjZTYzNGM4ZCIsIm5hbWUiOiIybmQiLCJleHBpcmVzX2F0IjoiMjAzMC0wOS0yM1QxOToxNDoxMyswMDAwIn0._-yOY7323R6HJ8eOTDmfMiqtG4WAFPUvP6zQSOulmHw",
+    api_key=str(api_key),
     base_url="https://api.studio.nebius.com/v1/"
 )
 
@@ -22,7 +23,7 @@ def choose_best_move_deepseek(board):
     The current board is:
     {board}
 
-    Decide the next move. Dont get stuck in loops. The aim is to reach 2048 tile.
+    Decide the next move. Don't repeat the previous move if board doesnt change.
     Only respond with one of these words exactly: "up", "down", "left", or "right".
     """
 

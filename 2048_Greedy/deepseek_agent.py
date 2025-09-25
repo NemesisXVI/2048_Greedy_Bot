@@ -1,15 +1,15 @@
 import numpy as np
 from openai import OpenAI
 from openai.types.chat import ChatCompletionUserMessageParam, ChatCompletionSystemMessageParam
+import os
 
 
-
+api_key = os.getenv("MY_API_KEY")
 # Initialize DeepSeek client
 client = OpenAI(
-    api_key="eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTE3NTM2MDEyNDk0MjYxNzAyMSIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkxNjQ3OTAxNCwidXVpZCI6IjAxOTk4MDk3LTMzMGEtNzZlZi04NTgxLWNjZDQzMGY1YTBkZiIsIm5hbWUiOiIzcmQiLCJleHBpcmVzX2F0IjoiMjAzMC0wOS0yNFQxMToxNjo1NCswMDAwIn0.7yTBCavlBERBGOa4HlbFVyjA1wCKkMH5YQ4jUPcCcOY",
+    api_key=str(api_key),
     base_url="https://api.studio.nebius.com/v1/"
 )
-
 
 
 def choose_best_move_deepseek(board):

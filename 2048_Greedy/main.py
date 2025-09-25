@@ -23,9 +23,15 @@ def detect_game_state(image_path):
         return "", check
 
     # best_move = choose_best_move(board)
-    best_move = choose_best_move_deepseek(board)
+    try:
+        best_move = choose_best_move_deepseek(board)
 
-    if best_move == "":
+        # If DeepSeek returns empty string, fallback to greedy
+        if best_move == "":
+            raise ValueError("DeepSeek returned empty move")
+
+    except Exception as e:
+        # print(f"DeepSeek failed: {e}")
         best_move = choose_best_move(board)
         print(f"Greedy suggests move: {best_move}")
 

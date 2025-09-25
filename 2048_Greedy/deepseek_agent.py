@@ -5,15 +5,11 @@ from openai.types.chat import ChatCompletionUserMessageParam, ChatCompletionSyst
 
 
 # Initialize DeepSeek client
-# client = OpenAI(
-#     api_key="eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTE3NTM2MDEyNDk0MjYxNzAyMSIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkxNjQ3OTAxNCwidXVpZCI6IjAxOTk4MDk3LTMzMGEtNzZlZi04NTgxLWNjZDQzMGY1YTBkZiIsIm5hbWUiOiIzcmQiLCJleHBpcmVzX2F0IjoiMjAzMC0wOS0yNFQxMToxNjo1NCswMDAwIn0.7yTBCavlBERBGOa4HlbFVyjA1wCKkMH5YQ4jUPcCcOY",
-#     base_url="https://api.studio.nebius.com/v1/"
-# )
-
 client = OpenAI(
-    api_key="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",
-    base_url="https://api.openai.com/v1/"
+    api_key="eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDExNTE3NTM2MDEyNDk0MjYxNzAyMSIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkxNjQ3OTAxNCwidXVpZCI6IjAxOTk4MDk3LTMzMGEtNzZlZi04NTgxLWNjZDQzMGY1YTBkZiIsIm5hbWUiOiIzcmQiLCJleHBpcmVzX2F0IjoiMjAzMC0wOS0yNFQxMToxNjo1NCswMDAwIn0.7yTBCavlBERBGOa4HlbFVyjA1wCKkMH5YQ4jUPcCcOY",
+    base_url="https://api.studio.nebius.com/v1/"
 )
+
 
 
 def choose_best_move_deepseek(board):
@@ -32,7 +28,7 @@ def choose_best_move_deepseek(board):
     """
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="deepseek-ai/DeepSeek-V3-0324",
         messages=[
             ChatCompletionSystemMessageParam(role="system", content="You are an AI that plays 2048."),
             ChatCompletionUserMessageParam(role="user", content=prompt)
